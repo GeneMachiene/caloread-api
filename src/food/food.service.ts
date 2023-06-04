@@ -7,16 +7,16 @@ import { PrismaService } from 'src/prisma/prisma.service';
 export class FoodService {
   constructor(private prismaService: PrismaService) {}
   async create(createFoodDto: CreateFoodDto) {
-    const { user_id, ...foodData } = createFoodDto;
+    const { username, ...foodData } = createFoodDto;
     return await this.prismaService.food.create({
-      data: { User: { connect: { id: user_id } }, ...foodData },
+      data: { User: { connect: { username: username } }, ...foodData },
     });
   }
 
-  async findAll(user_id: number) {
+  async findAll(username: string) {
     return await this.prismaService.food.findMany({
       where: {
-        user_id,
+        username,
       },
     });
   }

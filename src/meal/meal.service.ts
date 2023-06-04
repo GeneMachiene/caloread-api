@@ -12,14 +12,14 @@ export class MealService {
     });
   }
 
-  async findAll(user_id: number, date: string) {
+  async findAll(username: string, date: string) {
     const currDate = new Date(date).toJSON().slice(0, 10);
     const startDate = new Date(`${currDate}T00:00:00.000Z`);
     const endDate = new Date(`${currDate}T23:59:59.000Z`);
 
     return await this.prismaService.meal.findMany({
       where: {
-        user_id,
+        username,
         date_taken: {
           gte: startDate,
           lte: endDate,

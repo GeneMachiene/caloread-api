@@ -12,14 +12,13 @@ datasource db {
 }
 
 model User {
-  id           Int    @id() @unique @default(autoincrement())
+  username     String @id() @unique
+  password     String
   age          Int
   calorie_goal Float
   gender       String
   height_cm    Float
   weight_kg    Float
-  username     String @unique
-  password     String
   Meal         Meal[]
   Food         Food[]
 }
@@ -32,9 +31,9 @@ model Food {
   name     String
   grams    Float
   protein  Float
-  user_id  Int
+  username String
   Meal     Meal[]
-  User     User   @relation(fields: [user_id], references: [id])
+  User     User   @relation(fields: [username], references: [username])
 }
 
 model Meal {
@@ -42,9 +41,9 @@ model Meal {
   date_taken DateTime
   servings   Float
   type       String
-  user_id    Int
+  username   String
   food_id    Int
 
-  User User @relation(fields: [user_id], references: [id])
+  User User @relation(fields: [username], references: [username])
   Food Food @relation(fields: [food_id], references: [id])
 }

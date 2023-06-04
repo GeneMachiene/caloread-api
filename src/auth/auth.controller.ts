@@ -14,6 +14,6 @@ export class AuthController {
   }
   @Get('login')
   login(@Body() dto: LoginDto) {
-    this.authService.login(dto);
+    return this.authService.login(dto);
   }
 }

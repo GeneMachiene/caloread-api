@@ -22,9 +22,9 @@ export class MealController {
     return this.mealService.create(createMealDto);
   }
 
-  @Get('user/:id/date/:date') // date should be yyyy-MM-dd
-  findAll(@Param('id') user_id: string, @Param('date') date: string) {
-    return this.mealService.findAll(+user_id, date);
+  @Get('user/:username/date/:date') // date should be yyyy-MM-dd
+  findAll(@Param('username') username: string, @Param('date') date: string) {
+    return this.mealService.findAll(username, date);
   }
 
   @Get(':id')

@@ -4,9 +4,8 @@ import { IsDate, IsInt, IsNumber, IsString } from 'class-validator';
 
 export class CreateMealDto {
   @ApiProperty()
-  @Type(() => Number)
-  @IsInt()
-  user_id: number;
+  @IsString()
+  username: string;
 
   @ApiProperty()
   @Type(() => Number)

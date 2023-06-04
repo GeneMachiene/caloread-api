@@ -31,7 +31,7 @@ export class AuthService {
         },
       });
 
-      return this.validate(user.id);
+      return this.validate(user.username);
     } catch (e) {
       throw new HttpException('Something went wrong!', HttpStatus.BAD_REQUEST);
     }
@@ -52,17 +52,16 @@ export class AuthService {
           ],
         },
       });
-
-      return this.validate(user.id);
+      return this.validate(user.username);
     } catch (e) {
       throw new HttpException('Something went wrong!', HttpStatus.BAD_REQUEST);
     }
   }
 
-  private async validate(id: number) {
+  private async validate(username: string) {
     return await this.prismaService.user.findUnique({
       where: {
-        id,
+        username,
       },
     });
   }

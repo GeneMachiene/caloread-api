@@ -22,9 +22,9 @@ export class FoodController {
     return this.foodService.create(createFoodDto);
   }
 
-  @Get('user/:id')
-  findAll(@Param('id') user_id: string) {
-    return this.foodService.findAll(+user_id);
+  @Get('user/:username')
+  findAll(@Param('username') username: string) {
+    return this.foodService.findAll(username);
   }
 
   @Get(':id')
