@@ -7,13 +7,13 @@ import { UserService } from './user.service';
 @Controller('user')
 export class UserController {
   constructor(private userService: UserService) {}
-  @Put(':id')
-  updateUser(@Param('id') id: string, @Body() dto: UpdateUserDto) {
-    return this.userService.updateUser(+id, dto);
+  @Put(':username')
+  updateUser(@Param('username') username: string, @Body() dto: UpdateUserDto) {
+    return this.userService.updateUser(username, dto);
   }
 
-  @Get(':id')
-  findUser(@Param('id') id: string) {
-    return this.userService.findUser(+id);
+  @Get(':username')
+  findUser(@Param('username') username: string) {
+    return this.userService.findUser(username);
   }
 }
