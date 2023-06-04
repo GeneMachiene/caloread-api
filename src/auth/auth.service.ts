@@ -18,22 +18,24 @@ export class AuthService {
       weight_kg,
     } = dto;
 
-    try {
-      let user = await this.prismaService.user.create({
-        data: {
-          age,
-          calorie_goal,
-          gender,
-          height_cm,
-          password,
-          username,
-          weight_kg,
-        },
-      });
-
-      return this.validate(user.username);
-    } catch (e) {
-      throw new HttpException('Something went wrong!', HttpStatus.BAD_REQUEST);
+    if(await this.validate(username) == null){
+      try {
+        let user = await this.prismaService.user.create({
+          data: {
+            age,
+            calorie_goal,
+            gender,
+            height_cm,
+            password,
+            username,
+            weight_kg,
+          },
+        });
+      } catch (e) {
+        throw new HttpException('Something went wrong!', HttpStatus.BAD_REQUEST);
+      } 
+    } else {
+      throw new HttpException("Username taken", HttpStatus.BAD_REQUEST);
     }
   }
 
